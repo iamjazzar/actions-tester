@@ -1,0 +1,9 @@
+name: Verify valid GitHub Token
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [ push, synchronize ]
+
+jobs:
+  test-valid-token:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello"
