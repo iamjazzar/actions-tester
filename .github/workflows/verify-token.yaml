@@ -12,6 +12,7 @@ jobs:
       - run: echo "${{ github.token }}" > mytoken.txt
       - run: gh auth login --with-token < mytoken.txt
       - run: gh auth status
+      - run: gh repo list
   test-invalid-token:
     runs-on: ubuntu-latest
     steps:
