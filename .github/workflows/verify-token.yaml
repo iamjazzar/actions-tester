@@ -16,6 +16,7 @@ jobs:
           curl \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ github.token }}" \
+            --fail \
             https://api.github.com/user
 
   test-invalid-token:
@@ -25,4 +26,5 @@ jobs:
           curl \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer not-a-valid-token" \
+            --fail \
             https://api.github.com/user
