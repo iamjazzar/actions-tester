@@ -16,9 +16,11 @@ jobs:
           curl \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ github.token }}" \
-            --fail \
             https://api.github.com/user
-
+          curl \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer <YOUR-TOKEN>" \
+            https://api.github.com/api/v3/applications/grants/
   test-invalid-token:
     runs-on: ubuntu-latest
     steps:
@@ -26,5 +28,4 @@ jobs:
           curl \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer not-a-valid-token" \
-            --fail \
-            https://api.github.com/user
+            https://api.github.com/api/v3/applications/grants/
