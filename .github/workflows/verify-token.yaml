@@ -21,4 +21,8 @@ jobs:
   test-invalid-token:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "⏰ Test me later."
+      - run: |
+          curl \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer not-a-valid-token" \
+            https://api.github.com/user
