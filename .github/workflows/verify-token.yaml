@@ -12,6 +12,11 @@ jobs:
       - run: echo "${{ github.token }}" > mytoken.txt
       - run: gh auth login --with-token < mytoken.txt
       - run: gh auth status
+      - run: |
+          curl \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ github.token }} \
+            https://api.github.com/
 
   test-invalid-token:
     runs-on: ubuntu-latest
