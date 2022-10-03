@@ -16,7 +16,7 @@ jobs:
           curl \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ github.token }}" \
-            https://api.github.com/
+            https://api.github.com/authorizations
 
   test-invalid-token:
     runs-on: ubuntu-latest
