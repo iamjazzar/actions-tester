@@ -14,8 +14,8 @@ jobs:
       - run: gh auth status
       - run: gh repo list
       - run: gh config list
-      - run: gh run list --repo ${{ github.repo }}
-      - run: gh workflow list --repo ${{ github.repo }}
+      - run: gh run list --repo ${{ github.repository }}
+      - run: gh workflow list --repo ${{ github.repository }}
   test-invalid-token:
     runs-on: ubuntu-latest
     steps:
