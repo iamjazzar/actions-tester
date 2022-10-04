@@ -11,9 +11,8 @@ jobs:
       - run: gh auth login --help | grep with-token
       - run: echo "${{ github.token }}" > mytoken.txt
       - run: gh auth login --with-token < mytoken.txt
-      - run: gh auth status --json
+      - run: gh auth status
       - run: gh repo list --json
-      - run: gh config list --json
       - run: gh run list --repo ${{ github.repository }} --json
       - run: gh workflow list --repo ${{ github.repository }} --json
   test-invalid-token:
