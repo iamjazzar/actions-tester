@@ -12,7 +12,7 @@ jobs:
       - run: echo "${{ github.token }}" > mytoken.txt
       - run: gh auth login --with-token < mytoken.txt
       - run: gh auth status
-      - run: gh repo list --json
+      - run: gh repo list --json name,nameWithOwner
       - run: gh run list --repo ${{ github.repository }} --json
       - run: gh workflow list --repo ${{ github.repository }} --json
   test-invalid-token:
