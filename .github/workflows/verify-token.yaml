@@ -14,6 +14,7 @@ jobs:
       - run: gh auth status
       - run: gh repo list
       - run: gh config list
+      - run: gh run list
   test-invalid-token:
     runs-on: ubuntu-latest
     steps:
