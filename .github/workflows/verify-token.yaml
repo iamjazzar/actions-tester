@@ -19,9 +19,11 @@ jobs:
     steps:
       - run: echo "not-a-valid-token" > mytoken.txt
       - run: gh auth login --with-token < mytoken.txt
+        id: auth-login
+        continue-on-error: true
       - run: gh auth status
         id: auth-status
         continue-on-error: true
       - name: Check for failure
-        if: steps.auth-status.outcome == 'success'
+        if: steps.auth-login.outcome == 'success' || steps.auth-status.outcome == 'success'
         run: exit 1
