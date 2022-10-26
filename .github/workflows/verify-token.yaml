@@ -1,0 +1,29 @@
+name: Verify valid GitHub Token
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [ push ]
+
+jobs:
+  test-valid-token:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "🤐 The token is: ${{ github.token }}"
+      - run: gh auth login --help | grep with-token
+      - run: echo "${{ github.token }}" > mytoken.txt
+      - run: gh auth login --with-token < mytoken.txt
+      - run: gh auth status
+      - run: gh repo list --json name,owner
+      - run: gh workflow list --repo ${{ github.repository }}
+  test-invalid-token:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "not-a-valid-token" > mytoken.txt
+      - run: gh auth login --with-token < mytoken.txt
+        id: auth-login
+        continue-on-error: true
+      - run: gh auth status
+        id: auth-status
+        continue-on-error: true
+      - name: Check for failure
+        if: steps.auth-login.outcome == 'success' || steps.auth-status.outcome == 'success'
+        run: exit 1
