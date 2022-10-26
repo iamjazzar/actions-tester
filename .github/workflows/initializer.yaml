@@ -25,5 +25,6 @@ jobs:
       - run: echo "PR initialized"
   successor:
     runs-on: ubuntu-latest
+    needs: [ initialize ]
     steps:
       - run: echo "Successor step"
