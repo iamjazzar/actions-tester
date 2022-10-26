@@ -1,0 +1,29 @@
+name: Verify different triggers
+
+on:
+  pull_request:
+    types: [ready_for_review, opened, reopened, edited, synchronize, labeled]
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 4 * * *'
+
+jobs:
+  initialize:
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name != 'pull_request' ||
+      (
+        github.event.pull_request.draft == false ||
+        (
+          github.event.action == 'labeled' &&
+          github.event.label.name == 'runtest'
+        )
+      )
+    steps:
+      - run: echo "PR initialized"
+  successor:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Successor step"
