@@ -20,3 +20,8 @@ jobs:
       - run: echo "not-a-valid-token" > mytoken.txt
       - run: gh auth login --with-token < mytoken.txt
       - run: gh auth status
+        id: auth-status
+        continue-on-error: true
+      - name: Check for failure
+        if: steps.auth-status.outcome == 'success'
+        run: exit 1
