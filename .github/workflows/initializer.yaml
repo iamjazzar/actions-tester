@@ -22,6 +22,14 @@ jobs:
         )
       )
     steps:
+      - name: Remove runtest if exists
+        continue-on-error: true  # Ignore this step if the workflow didn't get triggered from a PR.
+        run: |
+          curl \
+            -X DELETE \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            ${{ github.event.pull_request.base.repo.url }}/issues/${{ github.event.number }}/labels/runtest
       - run: echo "PR initialized"
   successor:
     runs-on: ubuntu-latest
