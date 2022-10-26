@@ -1,4 +1,4 @@
-name: Verify different triggers
+name: Verify different triggers and events
 
 on:
   pull_request:
