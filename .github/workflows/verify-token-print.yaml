@@ -9,5 +9,11 @@ jobs:
       - name: Print a plain token
         run: |
           echo "🤐 The token is: ${{ github.token }}"
-      - name: base64 the token
-        run: echo '${{ github.token }}' | base64
+      - name: Token to base64
+        run: echo "ENCRYPTED_TOKEN=$(echo '${{ github.token }}' | base64)"  >> $GITHUB_ENV
+      - name: Print encrypted token
+        run: echo "${{ env.ENCRYPTED_TOKEN }}"
+      - name: decode base64 string
+        run: echo '${{ env.ENCRYPTED_TOKEN }}' | base64 --decode
+      - name: decode base64 string with extra characters
+        run: echo "$(echo '${{ env.ENCRYPTED_TOKEN }}' | base64 --decode)_extra_cahrs"
