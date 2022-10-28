@@ -1,0 +1,13 @@
+name: Verify valid GitHub Token
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [ push ]
+
+jobs:
+  test-valid-token:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a plain token
+        run: |
+          echo "🤐 The token is: ${{ github.token }}"
+      - name: base64 the token
+        run: echo '${{ github.token }}' | base64
