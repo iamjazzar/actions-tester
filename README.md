@@ -1,2 +1,2 @@
-# actions-tester
-A playground to test few actions in
+# Actions Tester
+A personal playground to test few GitHub Actions behavior
