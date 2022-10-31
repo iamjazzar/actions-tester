@@ -1,4 +1,4 @@
-name: Verify different triggers and events
+name: Print GitHub context
 
 on:
   pull_request:
