@@ -17,10 +17,14 @@ on:
         type: boolean
 
 jobs:
-  print-tag:
+  print-values:
     runs-on: ubuntu-latest
     steps:
       - name: Print logLevel value
         run: echo  "logLevel value is ${{ inputs.logLevel }}"
+      - name: Print logLevel value from context
+        run: echo  "logLevel value is ${{ github.event.inputs.logLevel }}"
       - name: Print logical value
         run: echo  "logical value is ${{ inputs.logical }}"
+      - name: Print logical value from context
+        run: echo  "logical value is ${{ github.event.inputs.logical }}"
