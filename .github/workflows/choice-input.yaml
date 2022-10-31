@@ -1,0 +1,26 @@
+name: Choice input behavior
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      logical:
+        description: 'True to print to logical'
+        required: true
+        type: boolean
+
+jobs:
+  print-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print logLevel value
+        run: echo  "logLevel value is ${{ inputs.logLevel }}"
+      - name: Print logical value
+        run: echo  "logical value is ${{ inputs.logical }}"
