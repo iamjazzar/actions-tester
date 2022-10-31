@@ -1,0 +1,17 @@
+name: Verify different triggers and events
+
+on:
+  pull_request:
+    types: [ready_for_review, opened, reopened, edited, synchronize, labeled]
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  view:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ toJSON(github) }}"
