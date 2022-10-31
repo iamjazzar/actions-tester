@@ -28,3 +28,7 @@ jobs:
         run: echo  "logical value is ${{ inputs.logical }}"
       - name: Print logical value from context
         run: echo  "logical value is ${{ github.event.inputs.logical }}"
+  print-values-workflow:
+    uses: ./.github/workflows/choice-input-reusable.yaml
+    permissions:
+      packages: write
