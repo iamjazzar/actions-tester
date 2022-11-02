@@ -14,7 +14,7 @@ concurrency:
 
 
 jobs:
-  test-valid-token:
+  test-concurrency:
     runs-on: ubuntu-latest
     steps:
       - name: Welcome to sleep action

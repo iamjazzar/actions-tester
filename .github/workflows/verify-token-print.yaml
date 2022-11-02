@@ -2,7 +2,7 @@ name: Verify GitHub Token not getting printed
 on: [ push ]
 
 jobs:
-  test-valid-token:
+  test-token-print:
     runs-on: ubuntu-latest
     steps:
       - name: Print a plain token
