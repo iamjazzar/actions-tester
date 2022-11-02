@@ -1,0 +1,26 @@
+name: Verify concurrent cancellation
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+
+# Shouldn't cancel concurrent pushes on other than PR
+concurrency:
+  group: 'group-${{ github.event.pull_request.head.label || github.head_ref || github.sha }}'
+  cancel-in-progress: true
+
+
+jobs:
+  test-valid-token:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Welcome to sleep action
+        run: echo "Welcome to sleep action"
+      - name: Sleep for 3 minutes
+        run: sleep 180s
+        shell: bash
+      - name: I'm awake
+        run: echo "I'm awake 🥹 Thank"

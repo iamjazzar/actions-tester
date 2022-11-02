@@ -1,5 +1,4 @@
 name: Verify GitHub Token not getting printed
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [ push ]
 
 jobs:
