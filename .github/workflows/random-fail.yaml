@@ -1,0 +1,9 @@
+name: Randomly fail this workflow
+on: [ pull_request ]
+
+jobs:
+  random-fail:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit $(( $RANDOM % 2 ))
+        shell: bash
