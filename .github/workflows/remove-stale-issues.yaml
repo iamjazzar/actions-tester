@@ -1,0 +1,17 @@
+name: remove-stale-issues
+
+on:
+  workflow_dispatch:
+
+jobs:
+  add-label:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Inform run
+        run: |
+          set -x
+          echo "Removing stale issues started"
+      - uses: actions/stale@v5
