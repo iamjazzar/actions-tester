@@ -1,0 +1,26 @@
+name: Workflow that triggers another workflow
+
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+permissions:
+  actions: write
+
+jobs:
+  view:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: Trigger workflow
+        run: |
+          set -x
+          gh workflow run remove-stale-issues
+        env:
+          GH_TOKEN: ${{ github.token }}
