@@ -1,0 +1,13 @@
+name: Workflow runs by manual trigger
+
+on:
+  workflow_dispatch:
+
+jobs:
+  view:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Nightly
+        run: |
+          set -x
+          echo "Manually triggered"

@@ -1,0 +1,19 @@
+name: Workflow that triggers another workflow
+
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  view:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Nightly
+        run: |
+          set -x
+          gh workflow run evergreen_23.lts.1+ --ref 23.lts.1+
+        env:
+          GH_TOKEN: ${{ github.token }}
