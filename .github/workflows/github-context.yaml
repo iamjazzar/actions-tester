@@ -14,4 +14,5 @@ jobs:
   view:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "Job ID: ${{ github.job }}"
       - run: echo "${{ toJSON(github) }}"
